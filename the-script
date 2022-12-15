@@ -1,4 +1,5 @@
 var currentDate = new Date();
+var yearNumber = Utilities.formatDate(currentDate, 'CET', 'yyyy');
 var weekNumber = Utilities.formatDate(currentDate, 'CET', 'w');
 
 function main() {
@@ -14,7 +15,7 @@ function main() {
   
   // Replace SPREADSHEET_URL with the URL of the spreadsheet 
   // make a copy
-  var spreadsheet = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1QYdc6jbEQGIUCaws8aUE6exvUqy4szbcumw0McKc2xE/copy")
+  var spreadsheet = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1Wot38iwTgGEDpe4FMUI-Z9UjacQFduESYQD1NbVyU-Q/copy")
   
    while (accountIterator.hasNext()) {
     var account = accountIterator.next();
@@ -25,7 +26,7 @@ function main() {
        // Save the performance data to a row in the spreadsheet
     var row = [account.getName(), stats.getImpressions(), stats.getClicks(), stats.getCtr(),
                stats.getCost(), stats.getAverageCpc() / 1000000, stats.getConversions(),
-               (stats.getConversions() / stats.getClicks()), stats.getCost() / stats.getConversions(), weekNumber - 1]; // delete , weekNumber - 1 if you don't want to incorporate it
+               (stats.getConversions() / stats.getClicks()), stats.getCost() / stats.getConversions(), yearNumber + weekNumber - 1]; // delete , weekNumber - 1 if you don't want to incorporate it
     spreadsheet.getActiveSheet().appendRow(row);
   }
 }  
